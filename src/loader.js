@@ -11,13 +11,6 @@ const defaultOptions = {
 
 export default function svg2jsxLoader(text) {
   this.cacheable(true);
-  const callback = this.async();
   const options = _.merge({}, defaultOptions, this.options.svg2jsx || {});
-
-  try {
-    const code = converter(text, options);
-    callback(null, code);
-  } catch (err) {
-    callback(err);
-  }
+  return converter(text, options);
 }
