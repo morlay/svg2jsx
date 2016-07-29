@@ -3,6 +3,10 @@
   "version": "0.1.1",
   "description": "transform svg as jsx constants elements",
   "main": "lib/index.js",
+  "engines": {
+    "node": ">= 6",
+    "npm": ">= 3"
+  },
   "config": {
     "MOCHA_OPTS": "-R dot --compilers js:babel-core/register src/__tests__/*.spec.js"
   },
