@@ -4,16 +4,14 @@ import { transform } from 'babel-core';
 
 const defaultSvgProcessor = ($el, $) => {
   _.assign($el[0], {
-    attribs: _.mapKeys($el[0].attribs, (value, key) => _.camelCase(key))
+    attribs: _.mapKeys($el[0].attribs, (value, key) => _.camelCase(key)),
   });
 
-  if ($el.children().length === 0) {
-    return false;
+  if ($el.children().length !== 0) {
+    $el.children().each((index, el) => {
+      defaultSvgProcessor($(el), $);
+    });
   }
-
-  $el.children().each((index, el) => {
-    defaultSvgProcessor($(el), $);
-  });
 };
 
 const defaultJsxWrapper = (codeString) => codeString;
@@ -27,7 +25,7 @@ export const cleanSvg = (codeString, svgProcessor) => {
     defaultSvgProcessor;
 
   const $ = cheerio.load(codeString, {
-    xmlMode: true
+    xmlMode: true,
   });
 
   finalSvgProcessor($('svg'), $);
@@ -45,9 +43,9 @@ export default (svgString, options = {}) => {
       [
         'transform-react-jsx',
         {
-          pragma: options.pragma
-        }
-      ]
-    ]
+          pragma: options.pragma,
+        },
+      ],
+    ],
   }));
 };

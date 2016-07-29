@@ -6,7 +6,7 @@ const defaultOptions = {
   jsxWrapper: (string) => `
     var createElement = require('react').createElement;
     module.exports = ${string};
-  `
+  `,
 };
 
 export default function svg2jsxLoader(text) {

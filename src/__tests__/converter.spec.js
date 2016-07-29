@@ -5,7 +5,7 @@ import fs from 'fs';
 import converter from '../converter';
 
 const getSvg = (fileName) => String(fs.readFileSync(`${__dirname}/${fileName}`, {
-  encode: 'utf-8'
+  encode: 'utf-8',
 }));
 
 const iconSvg = getSvg('./fixtures/icon.svg');
@@ -14,10 +14,11 @@ const jsxWrapper = (string) => `(createElement) => ${string}`;
 
 describe(__filename, () => {
   it('converter will transform svg string as constants svg', () => {
+    /* eslint no-eval: 0 */
     const svgCreator = eval(
       converter(iconSvg, {
         pragma: 'createElement',
-        jsxWrapper
+        jsxWrapper,
       })
     );
 
