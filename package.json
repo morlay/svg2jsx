@@ -1,6 +1,6 @@
 {
   "name": "svg2jsx",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "transform svg as jsx constants elements",
   "main": "lib/index.js",
   "config": {
